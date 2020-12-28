@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="css/MarkerCluster.css">
+        <link rel="stylesheet" href="css/MarkerCluster.Default.css">
+        <link rel="stylesheet" href="css/leaflet-search.css">
+        <style>
+        html, body, #map {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/leaflet-svg-shape-markers.min.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="js/leaflet.markercluster.js"></script>
+        <script src="js/leaflet-search.js"></script>
+        <script src="data/Cantidaddeproyectosporlocalidad_1.js"></script>
+        <script src="data/Proyectospormodalidad_2.js"></script>
+        <script>
+        var highlightLayer;
+        function highlightFeature(e) {
+            highlightLayer = e.target;
+            highlightLayer.openPopup();
+        }
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        }).fitBounds([[-34.94291086118211,-58.7962443660154],[-34.353272028346524,-57.99067121338675]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+        }
+        map.createPane('pane_MapaBasedelIGN_0');
+        map.getPane('pane_MapaBasedelIGN_0').style.zIndex = 400;
+        var layer_MapaBasedelIGN_0 = L.tileLayer('https://wms.ign.gob.ar/geoserver/gwc/service/tms/1.0.0/mapabase_gris@EPSG:3857@png/{z}/{x}/{-y}.png', {
+            pane: 'pane_MapaBasedelIGN_0',
+            opacity: 1.0,
+            attribution: '',
+            minZoom: 1,
+            maxZoom: 28,
+            minNativeZoom: 0,
+            maxNativeZoom: 18
+        });
+        layer_MapaBasedelIGN_0;
+        map.addLayer(layer_MapaBasedelIGN_0);
+        function pop_Cantidaddeproyectosporlocalidad_1(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function(feature){
+                            feature.closePopup()
+                        });
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                <tr>\
+                        <th scope="row">Localidad</th>\
+                        <td>' + (feature.properties['nombre'] !== null ? autolinker.link(feature.properties['nombre'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Cantidad de Proyectos</th>\
+                        <td>' + (feature.properties['count (loc_indec)'] !== null ? autolinker.link(feature.properties['count (loc_indec)'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Cantidaddeproyectosporlocalidad_1_0(feature) {
+            if (feature.properties['count (loc_indec)'] >= 1.000000 && feature.properties['count (loc_indec)'] <= 1.000000 ) {
+                return {
+                pane: 'pane_Cantidaddeproyectosporlocalidad_1',
+                radius: 8.0,
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,255,255,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['count (loc_indec)'] >= 1.000000 && feature.properties['count (loc_indec)'] <= 3.000000 ) {
+                return {
+                pane: 'pane_Cantidaddeproyectosporlocalidad_1',
+                radius: 14.0,
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,255,255,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['count (loc_indec)'] >= 3.000000 && feature.properties['count (loc_indec)'] <= 7.000000 ) {
+                return {
+                pane: 'pane_Cantidaddeproyectosporlocalidad_1',
+                radius: 20.0,
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,255,255,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['count (loc_indec)'] >= 7.000000 && feature.properties['count (loc_indec)'] <= 18.000000 ) {
+                return {
+                pane: 'pane_Cantidaddeproyectosporlocalidad_1',
+                radius: 26.0,
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,255,255,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['count (loc_indec)'] >= 18.000000 && feature.properties['count (loc_indec)'] <= 27.000000 ) {
+                return {
+                pane: 'pane_Cantidaddeproyectosporlocalidad_1',
+                radius: 32.0,
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,255,255,1.0)',
+                interactive: true,
+            }
+            }
+        }
+        map.createPane('pane_Cantidaddeproyectosporlocalidad_1');
+        map.getPane('pane_Cantidaddeproyectosporlocalidad_1').style.zIndex = 401;
+        map.getPane('pane_Cantidaddeproyectosporlocalidad_1').style['mix-blend-mode'] = 'normal';
+        var layer_Cantidaddeproyectosporlocalidad_1 = new L.geoJson(json_Cantidaddeproyectosporlocalidad_1, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Cantidaddeproyectosporlocalidad_1',
+            layerName: 'layer_Cantidaddeproyectosporlocalidad_1',
+            pane: 'pane_Cantidaddeproyectosporlocalidad_1',
+            onEachFeature: pop_Cantidaddeproyectosporlocalidad_1,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_Cantidaddeproyectosporlocalidad_1_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_Cantidaddeproyectosporlocalidad_1);
+        map.addLayer(layer_Cantidaddeproyectosporlocalidad_1);
+        function pop_Proyectospormodalidad_2(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function(feature){
+                            feature.closePopup()
+                        });
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">ID - proyecto</th>\
+                        <td colspan="2">' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Titulo del proyecto</th>\
+                        <td>' + (feature.properties['titulo'] !== null ? autolinker.link(feature.properties['titulo'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Linea Temática</th>\
+                        <td>' + (feature.properties['tematica'] !== null ? autolinker.link(feature.properties['tematica'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Modalidad</th>\
+                        <td>' + (feature.properties['modalidad'] !== null ? autolinker.link(feature.properties['modalidad'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Investigador Responsable</th>\
+                        <td>' + (feature.properties['investigador'] !== null ? autolinker.link(feature.properties['investigador'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Institucion a la que pertenece</th>\
+                        <td>' + (feature.properties['institucion'] !== null ? autolinker.link(feature.properties['institucion'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Institucion beneficiaria</th>\
+                        <td>' + (feature.properties['inst_benef'] !== null ? autolinker.link(feature.properties['inst_benef'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Provincia</th>\
+                        <td>' + (feature.properties['provincia'] !== null ? autolinker.link(feature.properties['provincia'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Localidad</th>\
+                        <td>' + (feature.properties['localidad'] !== null ? autolinker.link(feature.properties['localidad'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Proyectospormodalidad_2_0(feature) {
+            switch(String(feature.properties['modalidad'])) {
+                case 'A':
+                    return {
+                pane: 'pane_Proyectospormodalidad_2',
+                shape: 'triangle',
+                radius: 10.0,
+                opacity: 1,
+                color: 'rgba(50,87,128,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(167,227,89,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'B':
+                    return {
+                pane: 'pane_Proyectospormodalidad_2',
+                shape: 'triangle',
+                radius: 10.0,
+                opacity: 1,
+                color: 'rgba(50,87,128,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(130,67,208,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'C':
+                    return {
+                pane: 'pane_Proyectospormodalidad_2',
+                shape: 'triangle',
+                radius: 10.0,
+                opacity: 1,
+                color: 'rgba(50,87,128,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(20,231,221,1.0)',
+                interactive: true,
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_Proyectospormodalidad_2');
+        map.getPane('pane_Proyectospormodalidad_2').style.zIndex = 402;
+        map.getPane('pane_Proyectospormodalidad_2').style['mix-blend-mode'] = 'normal';
+        var layer_Proyectospormodalidad_2 = new L.geoJson(json_Proyectospormodalidad_2, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Proyectospormodalidad_2',
+            layerName: 'layer_Proyectospormodalidad_2',
+            pane: 'pane_Proyectospormodalidad_2',
+            onEachFeature: pop_Proyectospormodalidad_2,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.shapeMarker(latlng, style_Proyectospormodalidad_2_0(feature));
+            },
+        });
+        var cluster_Proyectospormodalidad_2 = new L.MarkerClusterGroup({
+            showCoverageOnHover: false,
+            spiderfyDistanceMultiplier: 2
+        });
+        cluster_Proyectospormodalidad_2.addLayer(layer_Proyectospormodalidad_2);
+
+        bounds_group.addLayer(layer_Proyectospormodalidad_2);
+        cluster_Proyectospormodalidad_2.addTo(map);
+        var baseMaps = {};
+        L.control.layers(baseMaps,{'Proyectos por modalidad<br /><table><tr><td style="text-align: center;"><img src="legend/Proyectospormodalidad_2_A0.png" /></td><td>A</td></tr><tr><td style="text-align: center;"><img src="legend/Proyectospormodalidad_2_B1.png" /></td><td>B</td></tr><tr><td style="text-align: center;"><img src="legend/Proyectospormodalidad_2_C2.png" /></td><td>C</td></tr></table>': cluster_Proyectospormodalidad_2,'Cantidad de proyectos por localidad<br /><table><tr><td style="text-align: center;"><img src="legend/Cantidaddeproyectosporlocalidad_1_110.png" /></td><td>1 - 1</td></tr><tr><td style="text-align: center;"><img src="legend/Cantidaddeproyectosporlocalidad_1_131.png" /></td><td>1 - 3</td></tr><tr><td style="text-align: center;"><img src="legend/Cantidaddeproyectosporlocalidad_1_372.png" /></td><td>3 - 7</td></tr><tr><td style="text-align: center;"><img src="legend/Cantidaddeproyectosporlocalidad_1_7183.png" /></td><td>7 - 18</td></tr><tr><td style="text-align: center;"><img src="legend/Cantidaddeproyectosporlocalidad_1_18274.png" /></td><td>18 - 27</td></tr></table>': layer_Cantidaddeproyectosporlocalidad_1,"Mapa Base del IGN": layer_MapaBasedelIGN_0,},{collapsed:false}).addTo(map);
+        setBounds();
+        map.addControl(new L.Control.Search({
+            layer: cluster_Proyectospormodalidad_2,
+            initial: false,
+            hideMarkerOnCollapse: true,
+            propertyName: 'modalidad'}));
+        document.getElementsByClassName('search-button')[0].className +=
+         ' fa fa-binoculars';
+        resetLabels([layer_Cantidaddeproyectosporlocalidad_1]);
+        map.on("zoomend", function(){
+            resetLabels([layer_Cantidaddeproyectosporlocalidad_1]);
+        });
+        map.on("layeradd", function(){
+            resetLabels([layer_Cantidaddeproyectosporlocalidad_1]);
+        });
+        map.on("layerremove", function(){
+            resetLabels([layer_Cantidaddeproyectosporlocalidad_1]);
+        });
+        </script>
+    </body>
+</html>
