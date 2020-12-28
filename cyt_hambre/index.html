@@ -327,15 +327,8 @@
         bounds_group.addLayer(layer_Proyectospormodalidad_2);
         cluster_Proyectospormodalidad_2.addTo(map);
         var baseMaps = {};
-        L.control.layers(baseMaps,{'Proyectos por modalidad<br /><table><tr><td style="text-align: center;"><img src="legend/Proyectospormodalidad_2_A0.png" /></td><td>A</td></tr><tr><td style="text-align: center;"><img src="legend/Proyectospormodalidad_2_B1.png" /></td><td>B</td></tr><tr><td style="text-align: center;"><img src="legend/Proyectospormodalidad_2_C2.png" /></td><td>C</td></tr></table>': cluster_Proyectospormodalidad_2,'Cantidad de proyectos por localidad<br /><table><tr><td style="text-align: center;"><img src="legend/Cantidaddeproyectosporlocalidad_1_110.png" /></td><td>1 - 1</td></tr><tr><td style="text-align: center;"><img src="legend/Cantidaddeproyectosporlocalidad_1_131.png" /></td><td>1 - 3</td></tr><tr><td style="text-align: center;"><img src="legend/Cantidaddeproyectosporlocalidad_1_372.png" /></td><td>3 - 7</td></tr><tr><td style="text-align: center;"><img src="legend/Cantidaddeproyectosporlocalidad_1_7183.png" /></td><td>7 - 18</td></tr><tr><td style="text-align: center;"><img src="legend/Cantidaddeproyectosporlocalidad_1_18274.png" /></td><td>18 - 27</td></tr></table>': layer_Cantidaddeproyectosporlocalidad_1,"Mapa Base del IGN": layer_MapaBasedelIGN_0,},{collapsed:true}).addTo(map);
+        L.control.layers(baseMaps,{'Proyectos por modalidad<br /><table><tr><td style="text-align: center;"><img src="legend/Proyectospormodalidad_2_A0.png" /></td><td>A</td></tr><tr><td style="text-align: center;"><img src="legend/Proyectospormodalidad_2_B1.png" /></td><td>B</td></tr><tr><td style="text-align: center;"><img src="legend/Proyectospormodalidad_2_C2.png" /></td><td>C</td></tr></table>': cluster_Proyectospormodalidad_2,'Cantidad de proyectos por localidad<br /><table><tr><td style="text-align: center;"><img src="legend/Cantidaddeproyectosporlocalidad_1_110.png" /></td><td>1 - 1</td></tr><tr><td style="text-align: center;"><img src="legend/Cantidaddeproyectosporlocalidad_1_131.png" /></td><td>1 - 3</td></tr><tr><td style="text-align: center;"><img src="legend/Cantidaddeproyectosporlocalidad_1_372.png" /></td><td>3 - 7</td></tr><tr><td style="text-align: center;"><img src="legend/Cantidaddeproyectosporlocalidad_1_7183.png" /></td><td>7 - 18</td></tr><tr><td style="text-align: center;"><img src="legend/Cantidaddeproyectosporlocalidad_1_18274.png" /></td><td>18 - 27</td></tr></table>': layer_Cantidaddeproyectosporlocalidad_1,"Mapa Base del IGN": layer_MapaBasedelIGN_0,}).addTo(map);
         setBounds();
-        // map.addControl(new L.Control.Search({
-        //     layer: cluster_Proyectospormodalidad_2,
-        //     initial: false,
-        //     hideMarkerOnCollapse: true,
-        //     propertyName: 'modalidad'}));
-        // document.getElementsByClassName('search-button')[0].className +=
-        //  ' fa fa-binoculars';
         resetLabels([layer_Cantidaddeproyectosporlocalidad_1]);
         map.on("zoomend", function(){
             resetLabels([layer_Cantidaddeproyectosporlocalidad_1]);
