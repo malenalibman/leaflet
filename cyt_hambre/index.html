@@ -92,7 +92,7 @@
             layer.bindPopup(popupContent, {maxHeight: 400});
             layer.on({ // flyTo point on clicked feature
                 click: function(e) {
-                    map.flyTo([e.latlng.lat, e.latlng.lng], 15);
+                    map.flyTo([e.latlng.lat, e.latlng.lng], 9);
                 }
             });
         }
