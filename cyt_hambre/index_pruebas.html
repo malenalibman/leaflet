@@ -90,6 +90,11 @@
                     </tr>\
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
+            layer.on({ // flyTo point on clicked feature
+                click: function(e) {
+                    map.flyTo([e.latlng.lat, e.latlng.lng], 9);
+                }
+            });
         }
 
         function style_Cantidaddeproyectosporlocalidad_1_0(feature) {
@@ -207,6 +212,7 @@
                 },
                 mouseover: highlightFeature,
             });
+
             var popupContent = '<table>\
                     <tr>\
                         <th scope="row">ID - proyecto</th>\
@@ -323,7 +329,6 @@
         });
         var cluster_Proyectospormodalidad_2 = new L.MarkerClusterGroup({});
         cluster_Proyectospormodalidad_2.addLayer(layer_Proyectospormodalidad_2);
-
         bounds_group.addLayer(layer_Proyectospormodalidad_2);
         cluster_Proyectospormodalidad_2.addTo(map);
         var baseMaps = {};

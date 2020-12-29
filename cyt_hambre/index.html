@@ -90,6 +90,11 @@
                     </tr>\
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
+            layer.on({ // flyTo point on clicked feature
+                click: function(e) {
+                    map.flyTo([e.latlng.lat, e.latlng.lng], 15);
+                }
+            });
         }
 
         function style_Cantidaddeproyectosporlocalidad_1_0(feature) {
